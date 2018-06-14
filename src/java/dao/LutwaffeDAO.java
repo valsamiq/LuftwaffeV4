@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import obj.Kontrol;
 import obj.Nave;
 import obj.Personal;
@@ -108,6 +109,17 @@ public class LutwaffeDAO {
         this.desconectar();
         return false;
     }
+    //Delete things
+    //--------------------------------------------------------------------------
+    public void deletePersonal(Personal p)throws SQLException{
+        this.conectar();
+        String query = "DELETE FROM Luftwaffe_Inventorien_Kontrol.Personal WHERE id='" + p.getId() + "'";
+        Statement st = conexion.createStatement();
+        st.executeUpdate(query);
+        st.close();
+        this.desconectar();
+    }
+    
     //Pers By Name (Login)
     //--------------------------------------------------------------------------
     public Personal getPersonalByName(String name) throws SQLException{
@@ -159,7 +171,7 @@ public class LutwaffeDAO {
         this.desconectar();
         return is;
     }
-    public ArrayList<Personal> getAllPersonal() throws SQLException{
+    public List<Personal> getAllPersonal() throws SQLException{
         Statement st = conexion.createStatement();
         ArrayList<Personal> TodoPersonal = new ArrayList<>();
         String select = "SELECT * FROM Luftwaffe_Inventorien_Kontrol.Personal";
