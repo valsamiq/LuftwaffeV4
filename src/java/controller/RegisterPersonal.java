@@ -34,6 +34,7 @@ public class RegisterPersonal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             LutwaffeDAO dao = new LutwaffeDAO();
+            
             String nombre = request.getParameter("nombre");
             String apellido = request.getParameter("apellido");
             String rank = request.getParameter("rank");

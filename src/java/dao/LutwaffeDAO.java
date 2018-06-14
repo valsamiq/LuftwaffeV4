@@ -23,7 +23,7 @@ public class LutwaffeDAO {
     //--------------------------------------------------------------------------
     public void insertPersonal(Personal p) throws SQLException {
         this.conectar();
-        String query = "INSERT INTO Luftwaffe_Inventorien_Kontrol.Personal VALUES (?,?,?,?)";
+        String query = "INSERT INTO Luftwaffe_Inventorien_Kontrol.Personal (nombre,apellido,rank,especialidad) VALUES (?,?,?,?)";
         PreparedStatement ps = conexion.prepareStatement(query);
 
         ps.setString(1, p.getNombre());
