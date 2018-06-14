@@ -68,6 +68,12 @@ public class Nave implements Serializable {
         this.id = id;
     }
 
+    public Nave(String fabricante, String modelo, String tipo) {
+        this.fabricante = fabricante;
+        this.modelo = modelo;
+        this.tipo = tipo;
+    }
+    
     public Nave(Integer id, String fabricante, String modelo, String tipo) {
         this.id = id;
         this.fabricante = fabricante;

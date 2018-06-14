@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import obj.Nave;
 import obj.Personal;
 
 /**
@@ -35,12 +36,40 @@ public class LutwaffeDAO {
         ps.close();
         this.desconectar();
     }
+    
+    public void insertNave(Nave n) throws SQLException {
+        this.conectar();
+        String query = "INSERT INTO Luftwaffe_Inventorien_Kontrol.nave (fabricante,modelo,tipo) VALUES (?,?,?)";
+        PreparedStatement ps = conexion.prepareStatement(query);
+
+        ps.setString(1, n.getFabricante());
+        ps.setString(2, n.getModelo());
+        ps.setString(3, n.getTipo());
+
+        ps.executeUpdate();
+        ps.close();
+        this.desconectar();
+    }
 
     //Check If Exists
     //--------------------------------------------------------------------------
     public boolean existePersonal(Personal p) throws SQLException {
         this.conectar();
         String query = "SELECT * FROM Luftwaffe_Inventorien_Kontrol.Personal WHERE nombre='" + p.getNombre() + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        if (rs.next()){
+            return true;
+        }
+        rs.close();
+        st.close();
+        this.desconectar();
+        return false;
+    }
+    
+    public boolean existeNave(Nave n) throws SQLException {
+        this.conectar();
+        String query = "SELECT * FROM Luftwaffe_Inventorien_Kontrol.nave WHERE modelo='" + n.getModelo()+ "'";
         Statement st = conexion.createStatement();
         ResultSet rs = st.executeQuery(query);
         if (rs.next()){

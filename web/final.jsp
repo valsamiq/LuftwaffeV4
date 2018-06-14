@@ -17,11 +17,11 @@
             if (status != null) {
         %>
         <h1><%= status%></h1>
-        <form action="index.html">
-            <input type="submit" value="Menu Principal"/>
-        </form>
         <%
             }
         %>
+        <form action="index.html">
+            <input type="submit" value="Menu Principal"/>
+        </form>
     </body>
 </html>

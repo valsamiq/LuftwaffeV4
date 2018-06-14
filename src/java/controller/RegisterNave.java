@@ -5,19 +5,21 @@
  */
 package controller;
 
+import dao.LutwaffeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import obj.Nave;
 
 /**
  *
- * @author daw2
+ * @author DAM
  */
-public class NewPersonal extends HttpServlet {
+public class RegisterNave extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,9 +32,25 @@ public class NewPersonal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     request.getRequestDispatcher("newPersonal.jsp");
+        try {
+        LutwaffeDAO dao = new LutwaffeDAO();
+        String fabricante = request.getParameter("fabricante");
+        String modelo = request.getParameter("modelo");
+        String tipo = request.getParameter("tipo");
+        Nave n = new Nave(fabricante, modelo, tipo);
+        
+        if (!dao.existeNave(n)) {
+            dao.insertNave(n);
+            request.setAttribute("status", "La nave se ha insertado correctamente");
+        }else{
+            request.setAttribute("status", "La nave ya existe");
+        }
+        request.getRequestDispatcher("/final.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            request.setAttribute("status", ex.getMessage());
+            request.getRequestDispatcher("/final.jsp").forward(request, response);
+        }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
