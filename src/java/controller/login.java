@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.registry.infomodel.PersonName;
+import obj.Kontrol;
 import obj.Personal;
 
 /**
@@ -23,7 +24,9 @@ import obj.Personal;
  */
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class login extends HttpServlet {
-LutwaffeDAO dao = new LutwaffeDAO();
+
+    LutwaffeDAO dao = new LutwaffeDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,29 +37,34 @@ LutwaffeDAO dao = new LutwaffeDAO();
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        Personal tmp = null;
-        boolean validUsu=false;
-        try{
+        Kontrol tmp = null;
+        boolean validUsu = false;
+        try {
             validUsu = dao.validaKontrol(username, password);
-        }catch (SQLException e) {
-                request.setAttribute("status", "No se puede dar de alta");
-                request.getRequestDispatcher("/final.jsp").forward(request, response);
-            }
-        //Check if user exists
-        try{
-            tmp = dao.getPersonalByName(username);
-            request.getSession(true).setAttribute("user", tmp);
-                //request.setAttribute("status", "Exito al logear-se");
-            response.sendRedirect(request.getContextPath()+ "/validUser.jsp");
-            
-        }catch(SQLException e){
-            request.setAttribute("status", e.getMessage());
-            request.getRequestDispatcher("/errorUser.jsp").forward(request, response);
+        } catch (SQLException e) {
+            request.setAttribute("status", "No se ha podido proceder");
+            request.getRequestDispatcher("/final.jsp").forward(request, response);
         }
+        if (validUsu) {
+            try {
+                tmp = dao.getKontrolByUsername(username);
+                request.getSession(true).setAttribute("user", tmp);
+                request.setAttribute("status", "Exito al logear-se");
+                response.sendRedirect(request.getContextPath() + "/final.jsp");
+            } catch (SQLException e) {
+                request.setAttribute("status", e.getMessage());
+                request.getRequestDispatcher("/errorUser.jsp").forward(request, response);
+            }
+        }else{
+            request.setAttribute("status", "Acceso Incorrecto");
+            request.getRequestDispatcher("/final.jsp").forward(request, response);
+        }
+        //Check if user exists
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
