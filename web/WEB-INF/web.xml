@@ -8,6 +8,10 @@
         <servlet-name>RegisterNave</servlet-name>
         <servlet-class>controller.RegisterNave</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterKontrol</servlet-name>
+        <servlet-class>controller.RegisterKontrol</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterPersonal</servlet-name>
         <url-pattern>/RegisterPersonal</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>RegisterNave</servlet-name>
         <url-pattern>/RegisterNave</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterKontrol</servlet-name>
+        <url-pattern>/RegisterKontrol</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
