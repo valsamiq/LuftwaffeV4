@@ -74,6 +74,13 @@ public class Personal implements Serializable {
         this.id = id;
     }
 
+    public Personal(String nombre, String apellido, String rank, String especialidad) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.rank = rank;
+        this.especialidad = especialidad;
+    }
+    
     public Personal(Integer id, String nombre, String apellido, String rank, String especialidad) {
         this.id = id;
         this.nombre = nombre;
