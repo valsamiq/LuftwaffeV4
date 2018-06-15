@@ -51,7 +51,6 @@ public class LutwaffeDAO {
         ps.close();
         this.desconectar();
     }
-    
     public void insertNave(Nave n) throws SQLException {
         this.conectar();
         String query = "INSERT INTO Luftwaffe_Inventorien_Kontrol.nave (fabricante,modelo,tipo) VALUES (?,?,?)";
@@ -176,7 +175,6 @@ public class LutwaffeDAO {
         ArrayList<Personal> TodoPersonal = new ArrayList<>();
         String select = "SELECT * FROM Luftwaffe_Inventorien_Kontrol.Personal";
         ResultSet rs = st.executeQuery(select);
-        
         while(rs.next()){
             Personal p = new Personal();
             p.setNombre(rs.getString("nombre"));
@@ -188,7 +186,7 @@ public class LutwaffeDAO {
         }
         st.close();
         return TodoPersonal;
-}
+    }
     //Connection
     //--------------------------------------------------------------------------
     private Connection conexion;
@@ -198,7 +196,6 @@ public class LutwaffeDAO {
         String pass = "";
         conexion = DriverManager.getConnection(url, user, pass);
     }
-
     public void desconectar() throws SQLException {
         if (conexion != null) {
             conexion.close();
