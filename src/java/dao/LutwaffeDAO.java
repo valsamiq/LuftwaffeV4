@@ -147,6 +147,30 @@ public class LutwaffeDAO {
         st.close();
         this.desconectar();
     }
+    public void deleteTripulacion(Tripulacion t)throws SQLException{
+        this.conectar();
+        String query = "DELETE FROM Luftwaffe_Inventorien_Kontrol.Tripulacion WHERE id='" + t.getId() + "'";
+        Statement st = conexion.createStatement();
+        st.executeUpdate(query);
+        st.close();
+        this.desconectar();
+    }
+    public void deleteMision(Mision t)throws SQLException{
+        this.conectar();
+        String query = "DELETE FROM Luftwaffe_Inventorien_Kontrol.Mision WHERE id='" + t.getId() + "'";
+        Statement st = conexion.createStatement();
+        st.executeUpdate(query);
+        st.close();
+        this.desconectar();
+    }
+    public void deleteNave(Nave t)throws SQLException{
+        this.conectar();
+        String query = "DELETE FROM Luftwaffe_Inventorien_Kontrol.Nave WHERE id='" + t.getId() + "'";
+        Statement st = conexion.createStatement();
+        st.executeUpdate(query);
+        st.close();
+        this.desconectar();
+    }
     //Gets
     //--------------------------------------------------------------------------
     public int getRand(){
@@ -181,6 +205,7 @@ public class LutwaffeDAO {
         ResultSet rs = st.executeQuery(query);
         if(rs.next()){
             tmp.setId(rs.getInt("id"));
+            tmp.setIdNave(getNaveFromId(rs.getInt("idNave")));
         }
         rs.close();
         this.desconectar();

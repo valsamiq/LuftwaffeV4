@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import obj.Mision;
+import obj.Nave;
 import obj.Tripulacion;
 
 /**
@@ -35,14 +37,19 @@ LutwaffeDAO dao = new LutwaffeDAO();
        try{
         int idDelete = Integer.parseInt(request.getParameter("id"));
         int exit = dao.getRand();
+        Tripulacion t = dao.getTripulacionById(idDelete);
         if(exit>5){
             //Exito Mision, no hace nada
-            Tripulacion t = dao.getTripulacionById(idDelete);
             request.setAttribute("status", "La mision ha procedido con exito!");
-            
+            dao.deleteTripulacion(t);
         }else{
             //Cagada, borra cosikas
-            
+            dao.deleteTripulacion(t);
+            dao.deletePersonal(dao.getPersonalFromId(t.getId()));
+            Mision n = dao.getMisionById(t.getIdMision().getId());
+            dao.deleteMision(dao.getMisionById(t.getIdMision().getId()));
+            //No consio hacer el último!!!!!!
+            //dao.deleteNave(dao.getNaveFromId(dao.getMisionById(n.getIdNave().getId())));
         }
     }catch (SQLException ex) {
             request.setAttribute("status", ex.getMessage());
