@@ -25,7 +25,7 @@
         %>
         <p>
         <form method="POST" action="CheckExit">
-            <p>Tipo de Mision: <select name="id">
+            <p>Mision a Checkear: <select name="id">
                     <%
                         for (Tripulacion m : list) {
                     %>

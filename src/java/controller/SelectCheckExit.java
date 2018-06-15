@@ -35,8 +35,8 @@ public class SelectCheckExit extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-        List<Tripulacion> allTrip = dao.getAllTrip();
-        request.setAttribute("allTrip", allTrip);
+            List<Tripulacion> allTrip = dao.getAllTrip();
+            request.setAttribute("allTrip", allTrip);
             request.setAttribute("status", "Listado de Tipos");
             request.getRequestDispatcher("/selectCheck.jsp").forward(request, response);
         } catch (SQLException ex) {

@@ -301,7 +301,6 @@ public class LutwaffeDAO {
             n.setId(rs.getInt("id"));
             n.setIdPersonal(getPersonalFromId(rs.getInt("idPersonal")));
             n.setIdMision(getMisionById(rs.getInt("idMision")));
-            
             allTrip.add(n);
         }
         rs.close();

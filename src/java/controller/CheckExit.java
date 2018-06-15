@@ -50,6 +50,8 @@ LutwaffeDAO dao = new LutwaffeDAO();
             dao.deleteMision(dao.getMisionById(t.getIdMision().getId()));
             //No consio hacer el último!!!!!!
             //dao.deleteNave(dao.getNaveFromId(dao.getMisionById(n.getIdNave().getId())));
+            request.setAttribute("status", "La mision fracasado. No ha vuelto la aeronave.");
+            request.getRequestDispatcher("/final.jsp").forward(request, response);
         }
     }catch (SQLException ex) {
             request.setAttribute("status", ex.getMessage());
