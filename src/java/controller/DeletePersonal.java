@@ -34,7 +34,9 @@ public class DeletePersonal extends HttpServlet {
             throws ServletException, IOException {
         LutwaffeDAO dao = new LutwaffeDAO();
         try {
-                Personal p = new Personal(Integer.parseInt(request.getParameter("idDelete")));
+                //Personal p = new Personal(Integer.parseInt(request.getParameter("idDelete")));
+                int idtest = Integer.parseInt(request.getParameter("idDelete"));
+                Personal p = dao.getPersonalFromId(idtest);
                 dao.deletePersonal(p);
                 request.setAttribute("status", "Personal Eliminado");
                 request.getRequestDispatcher("/final.jsp").forward(request, response);

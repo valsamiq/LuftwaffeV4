@@ -26,10 +26,10 @@
             <%
                 for (Personal p : list) {
             %>
-                <form action="
-                      " method="POST">
+                <form action="DeletePersonal" method="POST">
                     <input type="hidden" name="idDelete" value="<%=p.getId()%>" />
-                    <%=p.getNombre()%> <%=p.getApellido()%>, <%=p.getEspecialidad()%> - <%=p.getRank()%><input/>
+                    <%=p.getNombre()%> <%=p.getApellido()%>, <%=p.getEspecialidad()%> - <%=p.getRank()%>
+                    <input type="submit" value="Borrar Personal">
                 </form>
             <%
                 }

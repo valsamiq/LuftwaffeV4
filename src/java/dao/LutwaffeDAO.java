@@ -153,6 +153,21 @@ public class LutwaffeDAO {
         this.desconectar();
         return p;
     }
+    
+    public Personal getPersonalFromId(int i) throws SQLException{
+        this.conectar();
+        Personal personalReturnee = new Personal();
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.Personal WHERE id='"+i+"'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        if(rs.next()){
+            personalReturnee.setId(rs.getInt("id"));
+        }
+        rs.close();
+        this.desconectar();
+
+        return personalReturnee;
+    }
     public Nave getNaveFromId(int i) throws SQLException{
         this.conectar();
         Nave naveReturnee = new Nave();
@@ -221,12 +236,14 @@ public class LutwaffeDAO {
         return is;
     }
     public List<Personal> getAllPersonal() throws SQLException{
+        this.conectar();
         Statement st = conexion.createStatement();
         ArrayList<Personal> TodoPersonal = new ArrayList<>();
         String select = "SELECT * FROM Luftwaffe_Inventorien_Kontrol.Personal";
         ResultSet rs = st.executeQuery(select);
         while(rs.next()){
             Personal p = new Personal();
+            p.setId(rs.getInt("id"));
             p.setNombre(rs.getString("nombre"));
             p.setApellido(rs.getString("apellido"));
             p.setEspecialidad(rs.getString("especialidad"));
