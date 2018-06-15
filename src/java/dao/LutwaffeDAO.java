@@ -211,7 +211,7 @@ public class LutwaffeDAO {
     }
     public List<Mision> getAllMision() throws SQLException{
         this.conectar();
-        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.nave";
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.Mision";
         Statement st = conexion.createStatement();
         ResultSet rs = st.executeQuery(query);
         List<Mision> tmp = new ArrayList<Mision>();
