@@ -40,6 +40,14 @@
         <servlet-name>NewExecution</servlet-name>
         <servlet-class>controller.NewExecution</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewExecution2</servlet-name>
+        <servlet-class>controller.NewExecution2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewExecution3</servlet-name>
+        <servlet-class>controller.NewExecution3</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterPersonal</servlet-name>
         <url-pattern>/RegisterPersonal</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>NewExecution</servlet-name>
         <url-pattern>/NewExecution</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewExecution2</servlet-name>
+        <url-pattern>/NewExecution2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewExecution3</servlet-name>
+        <url-pattern>/NewExecution3</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

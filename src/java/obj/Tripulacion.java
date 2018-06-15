@@ -46,6 +46,11 @@ public class Tripulacion implements Serializable {
     public Tripulacion() {
     }
 
+    public Tripulacion(Mision idMision, Personal idPersonal) {
+        this.idMision = idMision;
+        this.idPersonal = idPersonal;
+    }
+
     public Tripulacion(Integer id) {
         this.id = id;
     }

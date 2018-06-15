@@ -17,6 +17,7 @@ import obj.Kontrol;
 import obj.Mision;
 import obj.Nave;
 import obj.Personal;
+import obj.Tripulacion;
 
 /**
  *
@@ -76,6 +77,18 @@ public class LutwaffeDAO {
         ps.setString(4, m.getZona());
         ps.setInt(5, m.getIdNave().getId());
 
+        ps.executeUpdate();
+        ps.close();
+        this.desconectar();
+    }
+    public void insertTripulacion(Tripulacion t) throws SQLException {
+        this.conectar();
+        String query = "INSERT INTO Luftwaffe_Inventorien_Kontrol.Tripulacion (idPersonal,idMision) VALUES (?,?)";
+        PreparedStatement ps = conexion.prepareStatement(query);
+        
+        //ps.setInt(1, t.getId());
+        ps.setInt(1, t.getIdPersonal().getId());
+        ps.setInt(2, t.getIdMision().getId());
         ps.executeUpdate();
         ps.close();
         this.desconectar();
@@ -149,10 +162,11 @@ public class LutwaffeDAO {
         ResultSet rs = st.executeQuery(query);
         Personal p = new Personal();
         if(rs.next()){
-            p.getNombre();
-            p.getApellido();
-            p.getRank();
-            p.getEspecialidad();
+            p.setId(rs.getInt("id"));
+            p.setNombre(rs.getString("nombre"));
+            p.setApellido(rs.getString("apellido"));
+            p.setRank(rs.getString("rank"));
+            p.setEspecialidad(rs.getString("especialidad"));
         }
         rs.close();
         st.close();
@@ -226,6 +240,22 @@ public class LutwaffeDAO {
         this.desconectar();
         return tmp;
     }
+    public Mision getMisionByName(String name) throws SQLException{
+            this.conectar();
+        String query = "SELECT * FROM Luftwaffe_Inventorien_Kontrol.Mision WHERE nombre='" + name + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Mision k = new Mision();
+        if(rs.next()){
+            k.setId(rs.getInt("id"));
+            k.setNombre(rs.getString("nombre"));
+            k.setZona(rs.getString("zona"));
+        }
+        rs.close();
+        st.close();
+        this.desconectar();
+        return k;
+    }
     public Kontrol getKontrolByUsername(String name) throws SQLException{
             this.conectar();
         String query = "SELECT * FROM Luftwaffe_Inventorien_Kontrol.kontrol WHERE username='" + name + "'";
@@ -233,9 +263,9 @@ public class LutwaffeDAO {
         ResultSet rs = st.executeQuery(query);
         Kontrol k = new Kontrol();
         if(rs.next()){
-            k.getUsername();
-            k.getPassword();
-            k.getRank();
+            k.setUsername(rs.getString("username"));
+            k.setPassword(rs.getString("password"));
+            k.setRank(rs.getString("rank"));
         }
         rs.close();
         st.close();

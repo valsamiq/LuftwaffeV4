@@ -25,7 +25,7 @@
         } else {
         %>
         <p>
-        <form method="POST" action="RegisterPersonal">
+        <form method="POST" action="NewExecution2">
             <p>Tipo de Mision: <select name="tipo">
                     <%
                     for (Mision m : list) {
@@ -36,7 +36,7 @@
                     %>
                 </select>
             </p>
-            <p><input type="submit" value="Alta"></p>
+            <p><input type="submit" value="Siguiente"></p>
         </form>
     </p>
     <%

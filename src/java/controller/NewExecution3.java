@@ -9,22 +9,22 @@ import dao.LutwaffeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import obj.Mision;
 import obj.Personal;
+import obj.Tripulacion;
 
 /**
  *
  * @author daw2
  */
-@WebServlet(name = "NewExecution2", urlPatterns = {"/NewExecution2"})
-public class NewExecution2 extends HttpServlet {
-LutwaffeDAO dao = new LutwaffeDAO();
+public class NewExecution3 extends HttpServlet {
+
+    LutwaffeDAO dao = new LutwaffeDAO();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,19 +34,18 @@ LutwaffeDAO dao = new LutwaffeDAO();
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try{
-            List<Mision> allMision = dao.getAllMision();
-            List<Personal> allPers = dao.getAllPersonal();
-            request.setAttribute("allPers", allPers);
-            request.setAttribute("allMision", allMision);
-            request.setAttribute("status", "Listado Pers-Mision");
-            request.getRequestDispatcher("/tripularForm2.jsp").forward(request, response);
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            Personal p = dao.getPersonalByName(request.getParameter("personal"));
+            Mision m = dao.getMisionByName(request.getParameter("mision"));
+            Tripulacion t = new Tripulacion(m, p);
+            dao.insertTripulacion(t);
+            request.setAttribute("status", "La Tripuacion se ha insertado correctamente");
         } catch (SQLException ex) {
             request.setAttribute("status", ex.getMessage());
             request.getRequestDispatcher("/final.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("/final.jsp").forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
