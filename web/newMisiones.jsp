@@ -22,7 +22,12 @@
         <form method="POST" action="RegisterMision">
             <p>Nombre: <input type="text" name="nombre" required></p>
             <p>Clasificacion: <input type="number" name="clasificacion" min="0" max="10" required></p>
-            <p>Tipo: <input type="text" name="tipo" required></p>
+            <p>Tipo: <select name="tipo">
+                    <option value="Bombardeo" name="tipo">Bombardeo</option>
+                    <option value="Reconocimiento" name="tipo">Reconocimiento</option>
+                    <option value="PatrullaAerea" name="tipo">PatrullaAerea(Caza)</option>
+                </select>
+            </p>
             <p>Zona: <input type="text" name="zona" required></p>
             <p>Nave: <select name="nave">
                     <% for(Nave nave: allNaves){%>

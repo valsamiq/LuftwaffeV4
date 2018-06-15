@@ -14,28 +14,26 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <%
-            List<Personal> list = (List<Personal>) request.getAttribute("allPers");
-                if (list.isEmpty()) {
-            %>
-            No hay personal
-            <%
-            } else {
-            %>
-            <%
-                for (Personal p : list) {
-            %>
-                <form action="
-                      " method="POST">
-                    <input type="hidden" name="idDelete" value="<%=p.getId()%>" />
-                    <%=p.getNombre()%> <%=p.getApellido()%>, <%=p.getEspecialidad()%> - <%=p.getRank()%><input/>
-                </form>
-            <%
-                }
-            %>
-            <%
-            } 
-            %>
+        List<Personal> list = (List<Personal>) request.getAttribute("allPers");
+            if (list.isEmpty()) {
+        %>
+        No hay personal
+        <%
+        } else {
+        %>
+        <%
+            for (Personal p : list) {
+        %>
+            <form action="DeletePersonal" method="POST">
+                <input type="hidden" name="idDelete" value="<%=p.getId()%>" />
+                <%=p.getNombre()%> <%=p.getApellido()%>, <%=p.getEspecialidad()%> - <%=p.getRank()%><input/>
+            </form>
+        <%
+            }
+        %>
+        <%
+        } 
+        %>
     </body>
 </html>

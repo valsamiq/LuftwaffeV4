@@ -32,6 +32,14 @@
         <servlet-name>DeletePersonalForm</servlet-name>
         <servlet-class>controller.DeletePersonalForm</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckExit</servlet-name>
+        <servlet-class>controller.CheckExit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewExecution</servlet-name>
+        <servlet-class>controller.NewExecution</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterPersonal</servlet-name>
         <url-pattern>/RegisterPersonal</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>DeletePersonalForm</servlet-name>
         <url-pattern>/DeletePersonalForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckExit</servlet-name>
+        <url-pattern>/CheckExit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewExecution</servlet-name>
+        <url-pattern>/NewExecution</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,23 +5,19 @@
  */
 package controller;
 
-import dao.LutwaffeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import obj.Personal;
 
 /**
  *
  * @author daw2
  */
-public class DeletePersonalForm extends HttpServlet {
-LutwaffeDAO dao = new LutwaffeDAO();
+public class CheckExit extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,18 +27,10 @@ LutwaffeDAO dao = new LutwaffeDAO();
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
-        List<Personal> allPers = dao.getAllPersonal();
-        request.setAttribute("allPers", allPers);
-        request.setAttribute("staus", "Listado de Personal");
-        request.getRequestDispatcher("/deletePersonalForm.jsp").forward(request, response);
-        }catch (SQLException ex) {
-                request.setAttribute("status", ex.getMessage());
-                request.getRequestDispatcher("/final.jsp").forward(request, response);
-            }
-    }
 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -81,5 +69,4 @@ LutwaffeDAO dao = new LutwaffeDAO();
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
