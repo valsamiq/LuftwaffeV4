@@ -25,7 +25,7 @@
             <p>Especialidad: <select name="especialidad">
                     <option value="Comandante" name="especialidad">Comandante</option>
                     <option value="Ingeniero" name="especialidad">Ingeniero</option>
-                    <option value="Tripulante" name="especialidad">Tripulante</option>
+                    <option value="PilotoLigero" name="especialidad">PilotoLigero</option>
                 </select>
             </p>
             <p><input type="submit" value="Alta"></p>

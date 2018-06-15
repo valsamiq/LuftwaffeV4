@@ -14,18 +14,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import obj.Personal;
+import obj.Mision;
+import obj.Nave;
 
 /**
- *
  * @author daw2
  */
-public class DeletePersonalForm extends HttpServlet {
-LutwaffeDAO dao = new LutwaffeDAO();
+public class NewExecution extends HttpServlet {
+    LutwaffeDAO dao = new LutwaffeDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -33,16 +32,15 @@ LutwaffeDAO dao = new LutwaffeDAO();
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-        List<Personal> allPers = dao.getAllPersonal();
-        request.setAttribute("allPers", allPers);
-        request.setAttribute("staus", "Listado de Personal");
-        request.getRequestDispatcher("/deletePersonalForm.jsp").forward(request, response);
-        }catch (SQLException ex) {
-                request.setAttribute("status", ex.getMessage());
-                request.getRequestDispatcher("/final.jsp").forward(request, response);
-            }
+            List<Mision> allMision = dao.getAllMision();
+            request.setAttribute("allMision", allMision);
+            request.setAttribute("status", "Listado de Tipos");
+            request.getRequestDispatcher("/tripularForm.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            request.setAttribute("status", ex.getMessage());
+            request.getRequestDispatcher("/final.jsp").forward(request, response);
+        }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

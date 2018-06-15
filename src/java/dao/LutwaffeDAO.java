@@ -134,6 +134,12 @@ public class LutwaffeDAO {
         st.close();
         this.desconectar();
     }
+    //Gets
+    //--------------------------------------------------------------------------
+    public int getRand(){
+        int tmp = (int) (Math.random()*10)+1;
+        return tmp;
+    }
     //Pers By Name (Login)
     //--------------------------------------------------------------------------
     public Personal getPersonalByName(String name) throws SQLException{
@@ -202,6 +208,23 @@ public class LutwaffeDAO {
         rs.close();
         this.desconectar();
         return allNaves;
+    }
+    public List<Mision> getAllMision() throws SQLException{
+        this.conectar();
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.nave";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        List<Mision> tmp = new ArrayList<Mision>();
+        while(rs.next()){
+            Mision m = new Mision();
+            m.setId(rs.getInt("id"));
+            m.setNombre(rs.getString("nombre"));
+            m.setZona(rs.getString("zona"));
+            m.setTipo(rs.getString("tipo"));
+            tmp.add(m);
+        }
+        this.desconectar();
+        return tmp;
     }
     public Kontrol getKontrolByUsername(String name) throws SQLException{
             this.conectar();
