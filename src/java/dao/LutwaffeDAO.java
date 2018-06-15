@@ -173,7 +173,32 @@ public class LutwaffeDAO {
         this.desconectar();
         return p;
     }
-    
+    public Mision getMisionById(int i) throws SQLException{
+        this.conectar();
+        Mision tmp = new Mision();
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.Mision WHERE id='"+i+"'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        if(rs.next()){
+            tmp.setId(rs.getInt("id"));
+        }
+        rs.close();
+        this.desconectar();
+        return tmp;
+    }
+    public Tripulacion getTripulacionById(int i) throws SQLException{
+        this.conectar();
+        Tripulacion tmp = new Tripulacion();
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.Tripulacion WHERE id='"+i+"'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        if(rs.next()){
+            tmp.setId(rs.getInt("id"));
+        }
+        rs.close();
+        this.desconectar();
+        return tmp;
+    }
     public Personal getPersonalFromId(int i) throws SQLException{
         this.conectar();
         Personal personalReturnee = new Personal();
@@ -239,6 +264,24 @@ public class LutwaffeDAO {
         }
         this.desconectar();
         return tmp;
+    }
+    public List<Tripulacion> getAllTrip() throws SQLException{
+        this.conectar();
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.Tripulacion";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        List<Tripulacion> allTrip = new ArrayList<Tripulacion>();
+        while(rs.next()){
+            Tripulacion n = new Tripulacion();
+            n.setId(rs.getInt("id"));
+            n.setIdPersonal(getPersonalFromId(rs.getInt("idPersonal")));
+            n.setIdMision(getMisionById(rs.getInt("idMision")));
+            
+            allTrip.add(n);
+        }
+        rs.close();
+        this.desconectar();
+        return allTrip;
     }
     public Mision getMisionByName(String name) throws SQLException{
             this.conectar();

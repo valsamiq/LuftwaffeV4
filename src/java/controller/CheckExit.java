@@ -5,19 +5,22 @@
  */
 package controller;
 
+import dao.LutwaffeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import obj.Tripulacion;
 
 /**
  *
  * @author daw2
  */
 public class CheckExit extends HttpServlet {
-
+LutwaffeDAO dao = new LutwaffeDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,7 +32,22 @@ public class CheckExit extends HttpServlet {
      */
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+       try{
+        int idDelete = Integer.parseInt(request.getParameter("id"));
+        int exit = dao.getRand();
+        if(exit>5){
+            //Exito Mision, no hace nada
+            Tripulacion t = dao.getTripulacionById(idDelete);
+            request.setAttribute("status", "La mision ha procedido con exito!");
+            
+        }else{
+            //Cagada, borra cosikas
+            
+        }
+    }catch (SQLException ex) {
+            request.setAttribute("status", ex.getMessage());
+            request.getRequestDispatcher("/final.jsp").forward(request, response);
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

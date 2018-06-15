@@ -48,6 +48,10 @@
         <servlet-name>NewExecution3</servlet-name>
         <servlet-class>controller.NewExecution3</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SelectCheckExit</servlet-name>
+        <servlet-class>controller.SelectCheckExit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterPersonal</servlet-name>
         <url-pattern>/RegisterPersonal</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>NewExecution3</servlet-name>
         <url-pattern>/NewExecution3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SelectCheckExit</servlet-name>
+        <url-pattern>/SelectCheckExit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

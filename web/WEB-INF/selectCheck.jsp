@@ -1,12 +1,11 @@
 <%-- 
-    Document   : tripularForm
-    Created on : 15-jun-2018, 14:55:23
+    Document   : selectCheck
+    Created on : 15-jun-2018, 19:39:50
     Author     : daw2
 --%>
 
-<%@page import="obj.Mision"%>
-<%@page import="obj.Nave"%>
 <%@page import="java.util.List"%>
+<%@page import="obj.Tripulacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,7 @@
     <body>
         <h1>Send Mission Form</h1>
         <%
-            List<Mision> list = (List<Mision>) request.getAttribute("allMision");
+            List<Tripulacion> list = (List<Tripulacion>) request.getAttribute("allTrip");
             if (list.isEmpty()) {
         %>
         <h2> No hay Registros de Misiones activas </h2>
@@ -25,12 +24,12 @@
         } else {
         %>
         <p>
-        <form method="POST" action="NewExecution2">
-            <p>Tipo de Mision: <select name="tipo">
+        <form method="POST" action="CheckExit">
+            <p>Tipo de Mision: <select name="id">
                     <%
-                        for (Mision m : list) {
+                        for (Tripulacion m : list) {
                     %>
-                    <option value="<%=m.getTipo()%>" name="tipo"><%=m.getTipo()%></option>
+                        <option value="<%=m.getId()%>" name="id"><%=m.getId()%></option>
                     <%
                         }
                     %>

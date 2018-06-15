@@ -9,18 +9,19 @@ import dao.LutwaffeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import obj.Mision;
-import obj.Nave;
+import obj.Tripulacion;
 
 /**
  *
- * @author DAM
+ * @author daw2
  */
-public class RegisterMision extends HttpServlet {
+public class SelectCheckExit extends HttpServlet {
+    LutwaffeDAO dao = new LutwaffeDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +34,18 @@ public class RegisterMision extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    LutwaffeDAO dao = new LutwaffeDAO();
-    
-    try{
-        String nombre = request.getParameter("nombre");
-        int clasificacion =Integer.parseInt(request.getParameter("clasificacion")) ;
-        String tipo = request.getParameter("tipo");
-        String zona = request.getParameter("zona");
-        Nave n = dao.getNaveFromId(Integer.parseInt(request.getParameter("nave")));
-        //int naveId = Integer.parseInt(request.getParameter("nave"));
-        Mision misionAux = new Mision(nombre, clasificacion, tipo, zona, n);
-        dao.insertMision(misionAux);
-        request.setAttribute("status", "La mision se ha insertado correctamente");
-    } catch (SQLException ex) {
+        try{
+        List<Tripulacion> allTrip = dao.getAllTrip();
+        request.setAttribute("allTrip", allTrip);
+            request.setAttribute("status", "Listado de Tipos");
+            request.getRequestDispatcher("/selectCheck.jsp").forward(request, response);
+        } catch (SQLException ex) {
             request.setAttribute("status", ex.getMessage());
             request.getRequestDispatcher("/final.jsp").forward(request, response);
+        }
+        
     }
-    request.getRequestDispatcher("/final.jsp").forward(request, response);
-    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -89,4 +84,5 @@ public class RegisterMision extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
