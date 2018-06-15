@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import obj.Kontrol;
+import obj.Mision;
 import obj.Nave;
 import obj.Personal;
 
@@ -59,6 +60,21 @@ public class LutwaffeDAO {
         ps.setString(1, n.getFabricante());
         ps.setString(2, n.getModelo());
         ps.setString(3, n.getTipo());
+
+        ps.executeUpdate();
+        ps.close();
+        this.desconectar();
+    }
+    public void insertMision(Mision m) throws SQLException {
+        this.conectar();
+        String query = "INSERT INTO Luftwaffe_Inventorien_Kontrol.Mision (nombre,clasificacion,tipo,zona,idNave) VALUES (?,?,?,?,?)";
+        PreparedStatement ps = conexion.prepareStatement(query);
+
+        ps.setString(1, m.getNombre());
+        ps.setInt(2, m.getClasificacion());
+        ps.setString(3, m.getTipo());
+        ps.setString(4, m.getZona());
+        ps.setInt(5, m.getIdNave().getId());
 
         ps.executeUpdate();
         ps.close();
@@ -118,7 +134,6 @@ public class LutwaffeDAO {
         st.close();
         this.desconectar();
     }
-    
     //Pers By Name (Login)
     //--------------------------------------------------------------------------
     public Personal getPersonalByName(String name) throws SQLException{
@@ -137,6 +152,41 @@ public class LutwaffeDAO {
         st.close();
         this.desconectar();
         return p;
+    }
+    public Nave getNaveFromId(int i) throws SQLException{
+        this.conectar();
+        Nave naveReturnee = new Nave();
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.nave WHERE id='"+i+"'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        if(rs.next()){
+            naveReturnee.setId(rs.getInt("id"));
+            naveReturnee.setFabricante(rs.getString("fabricante"));
+            naveReturnee.setModelo(rs.getString("modelo"));
+            naveReturnee.setTipo(rs.getString("tipo"));
+        }
+        rs.close();
+        this.desconectar();
+
+        return naveReturnee;
+    }
+    public List<Nave> getAllaNaves() throws SQLException{
+        this.conectar();
+        String query = "Select * FROM Luftwaffe_Inventorien_Kontrol.nave";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        List<Nave> allNaves = new ArrayList<Nave>();
+        while(rs.next()){
+            Nave n = new Nave();
+            n.setId(rs.getInt("id"));
+            n.setFabricante(rs.getString("fabricante"));
+            n.setModelo(rs.getString("modelo"));
+            n.setTipo(rs.getString("tipo"));
+            allNaves.add(n);
+        }
+        rs.close();
+        this.desconectar();
+        return allNaves;
     }
     public Kontrol getKontrolByUsername(String name) throws SQLException{
             this.conectar();

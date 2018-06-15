@@ -16,7 +16,12 @@
         <form method="POST" action="RegisterKontrol">
             <p>Username:<input type="text" name="username" required></p>
             <p>Password:<input type="password" name="password" required></p>
-            <p>Rank:<input type="text" name="rank" required></p>
+            <p>Rango: <select name="rank">
+                    <option value="Inspector" name="rank">Inspector</option>
+                    <option value="Sargento" name="rank">Sargento</option>
+                    <option value="Caporal" name="rank">Caporal</option>
+                </select>
+            </p>
             <p><input type="submit" value="Alta"></p>
         </form>
     </body>

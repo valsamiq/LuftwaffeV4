@@ -78,6 +78,14 @@ public class Mision implements Serializable {
         this.id = id;
     }
 
+    public Mision(String nombre, int clasificacion, String tipo, String zona, Nave idNave) {
+        this.nombre = nombre;
+        this.clasificacion = clasificacion;
+        this.tipo = tipo;
+        this.zona = zona;
+        this.idNave = idNave;
+    }
+    
     public Mision(Integer id, String nombre, int clasificacion, String tipo, String zona) {
         this.id = id;
         this.nombre = nombre;

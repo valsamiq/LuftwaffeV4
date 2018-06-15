@@ -13,6 +13,14 @@
         <servlet-class>controller.RegisterKontrol</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RegisterMision</servlet-name>
+        <servlet-class>controller.RegisterMision</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetNaves</servlet-name>
+        <servlet-class>controller.GetNaves</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>controller.login</servlet-class>
     </servlet>
@@ -35,6 +43,14 @@
     <servlet-mapping>
         <servlet-name>RegisterKontrol</servlet-name>
         <url-pattern>/RegisterKontrol</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterMision</servlet-name>
+        <url-pattern>/RegisterMision</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetNaves</servlet-name>
+        <url-pattern>/GetNaves</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>login</servlet-name>

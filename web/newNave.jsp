@@ -14,9 +14,22 @@
     <body>
         <h1>New Nave!</h1>
         <form method="POST" action="RegisterNave">
-            <p>Fabricante<input type="text" name="fabricante" required></p>
+            <p>Fabricante: <select name="fabricante" required>
+                    <option value="Junkers" name="fabricante">Junkers</option>
+                    <option value="Fieseler" name="fabricante">Fieseler</option>
+                    <option value="Heinkel" name="fabricante">Heinkel</option>
+                    <option value="Messerschmitt" name="fabricante">Messerschmitt</option>
+                    <option value="Dornier" name="fabricante">Dornier</option>
+                    <option value="Flugzeugwerke" name="fabricante">Flugzeugwerke</option>
+                </select>
+            </p>
             <p>Modelo<input type="text" name="modelo" required></p>
-            <p>Tipo<input type="text" name="tipo" required></p>
+            <p>Tipo: <select name="tipo" required>
+                    <option value="Caza" name="tipo">Caza</option>
+                    <option value="Bombardero" name="tipo">Bombardero</option>
+                    <option value="Reconocimiento" name="tipo">Reconocimiento</option>
+                </select>
+            </p>
             <p><input type="submit" value="Alta"></p>
         </form>
     </body>
